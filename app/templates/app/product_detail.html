@@ -1,0 +1,12 @@
+{%extends './index.html'%}
+{%load static%}
+{%block title%}
+Детали продукта
+{%endblock%}
+{%block main%}
+    <h1>{{ product.name }}</h1>
+    <p>Цена: {{ product.price }} руб.</p>
+    <p>Описание: {{ product.description }}</p>
+    <p>Наличие: {{ product.quantity }} шт</p>
+    <img src="{{ product.product_image.url }}" alt="product image">
+{%endblock%}

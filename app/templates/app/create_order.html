@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создание заказа</title>
+</head>
+<body>
+<h1>Создание заказа</h1>
+{% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endif %}
+<form method="post" action="{%url 'app:create_order' %} ">
+
+    {% csrf_token %}
+    <label for="product">Продукт:</label>
+    <select name="product" id="product">
+        {% for product in products %}
+        <option value="{{ product.id }}">{{ product.name }} - {{ product.price }} руб.</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <label for="quantity">Количество:</label>
+    <input type="number" name="quantity" id="quantity" min="1" value="1">
+    <br><br>
+    <label for="name">Имя:</label>
+    <input type="text" name="name" id="name">
+    <br><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+    <br><br>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone" required>
+    <br><br>
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" required></textarea>
+    <button type="submit">Отправить заказ</button>
+
+
+</form>
+</body>
+</html>

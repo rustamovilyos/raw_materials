@@ -1,0 +1,16 @@
+{% for order in orders_list %}
+        <p>{{ order.id }}</p>
+        <p>{{ order.name }}</p>
+        <p>{{ order.date_ordered }}</p>
+        <p>{{ order.price }}</p>
+        <p>{{ order.quantity }}</p>
+<hr>
+            {% for item in order.order_products.all %}
+                {{ item.product.name }} - {{ item.quantity }} - {{ item.price }} - {{ item.get_total_price }}
+                <br>
+<img src="{{ item.product.product_image.url }}" alt="">
+                <br>
+            {% endfor %}
+<hr>
+<hr>
+{% endfor %}

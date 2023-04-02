@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подтверждение заказа</title>
+</head>
+<body>
+     <h1>Order Confirmation</h1>
+  <p>Your order has been received and will be processed shortly. Here are the details:</p>
+  <ul>
+    <li><strong>Order ID:</strong> {{ order.id }}</li>
+    <li><strong>Date:</strong> {{ order.date_ordered }}</li>
+    <li><strong>Name:</strong> {{ order.name }}</li>
+    <li><strong>Email:</strong> {{ order.email }}</li>
+    <li><strong>Phone:</strong> {{ order.phone }}</li>
+    <li><strong>Address:</strong> {{ order.address }}</li>
+    {% for order_product in order.order_products.all %}
+    <li><strong>Total Price:</strong> {{ order_product.get_total_price }}</li>
+    <li><strong>Total Quantity:</strong> {{ order_product.quantity }}</li>
+    {% endfor %}
+  </ul>
+  <h2>Order Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order_product in order.order_products.all %}
+      <tr>
+        <td>{{ order_product.product.name}}</td>
+        <td>{{ order_product.price}}</td>
+        <td>{{ order_product.quantity}}</td>
+        <td>{{ order_product.get_total_price}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
