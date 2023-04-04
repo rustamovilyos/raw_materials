@@ -3,9 +3,9 @@ from .models import Product, Order, OrderProduct
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'price', 'quantity', 'product_image')
+    list_display = ('name', 'price', 'quantity', 'product_image')
     list_filter = ('price', 'quantity')
-    search_fields = ('name', 'description')
+    search_fields = ('name', 'price')
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -23,3 +23,4 @@ class OrderProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderProduct, OrderProductAdmin)
+

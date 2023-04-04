@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Подтверждение заказа</title>
-</head>
-<body>
-     <h1>Order Confirmation</h1>
-  <p>Your order has been received and will be processed shortly. Here are the details:</p>
-  <ul>
-    <li><strong>Order ID:</strong> {{ order.id }}</li>
-    <li><strong>Date:</strong> {{ order.date_ordered }}</li>
-    <li><strong>Name:</strong> {{ order.name }}</li>
-    <li><strong>Email:</strong> {{ order.email }}</li>
-    <li><strong>Phone:</strong> {{ order.phone }}</li>
-    <li><strong>Address:</strong> {{ order.address }}</li>
+{%extends './index.html'%}
+{%load static%}
+
+{%block main%}
+<div class=" border border-info border-4 rounded-5" style="margin: 20px; padding: 10px;">
+     <h1 class="d-flex justify-content-center" style="margin: 15px">Подтверждение заказа</h1>
+  <p>Ваш заказ принят и будет обработан в ближайшее время. Вот подробности:</p>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>ID заказа:</strong> {{ order.id }}</li>
+    <li class="list-group-item"><strong>Дата:</strong> {{ order.date_ordered }}</li>
+    <li class="list-group-item"><strong>Имя клиента:</strong> {{ order.name }}</li>
+    <li class="list-group-item"><strong>Электронная почта:</strong> {{ order.email }}</li>
+    <li class="list-group-item"><strong>Телефон:</strong> {{ order.phone }}</li>
+    <li class="list-group-item"><strong>Адрес:</strong> {{ order.address }}</li>
     {% for order_product in order.order_products.all %}
-    <li><strong>Total Price:</strong> {{ order_product.get_total_price }}</li>
-    <li><strong>Total Quantity:</strong> {{ order_product.quantity }}</li>
+    <li class="list-group-item"><strong>Название продукта:</strong> {{ order_product.product.name }}</li>
+    <li class="list-group-item"><strong>Цена за шт:</strong> {{ order_product.price }}</li>
+    <li class="list-group-item"><strong>Total Price:</strong> {{ order_product.get_total_price }}</li>
+    <li class="list-group-item"><strong>Total Quantity:</strong> {{ order_product.quantity }}</li>
     {% endfor %}
   </ul>
-  <h2>Order Summary</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for order_product in order.order_products.all %}
-      <tr>
-        <td>{{ order_product.product.name}}</td>
-        <td>{{ order_product.price}}</td>
-        <td>{{ order_product.quantity}}</td>
-        <td>{{ order_product.get_total_price}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</body>
-</html>
+</div>
+
+{%endblock%}

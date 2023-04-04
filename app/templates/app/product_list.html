@@ -1,19 +1,24 @@
 {%extends './index.html'%}
 {%load static%}
 {% block main %}
-{%for product in products%}
-<div class="row">
-    <div class="col">
-        <div class="card" style="width: 18rem; margin-top: 1%;">
-            <img src="{{ product.product_image.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text">{{product.description}}</p>
-                <a href="{% url 'app:product_detail' product.id %}" class="btn btn-primary">Подробно</a>
-                <a href="{% url 'app:create_order' %}" class="btn btn-primary">Заказать</a>
+<div class="container">
+     <div class="row">
+    {%for product in products%}
+
+        <div class="col-md-4 mb-1">
+            <div class="card h-100" style="width: 18rem; margin-top: 5%;">
+                <img src="{{ product.product_image.url }}" class="card-img-top" alt="...">
+                <div class="card-body" >
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">Цена {{product.price}}$ за шт</p>
+                    <a href="{% url 'app:product_detail' product.id %}" class="btn btn-primary">Подробно</a>
+                    <a href="{% url 'app:create_order' %}" class="btn btn-primary">Заказать</a>
+                </div>
             </div>
         </div>
-    </div>
+
+    {%endfor%}
+     </div>
 </div>
-{%endfor%}
+
 {% endblock %}

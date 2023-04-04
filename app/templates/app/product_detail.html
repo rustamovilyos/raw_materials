@@ -4,9 +4,22 @@
 Детали продукта
 {%endblock%}
 {%block main%}
-    <h1>{{ product.name }}</h1>
-    <p>Цена: {{ product.price }} руб.</p>
-    <p>Описание: {{ product.description }}</p>
-    <p>Наличие: {{ product.quantity }} шт</p>
-    <img src="{{ product.product_image.url }}" alt="product image">
+<div class="card" style="margin: 10px;">
+    <div class="row col-12">
+        <div class="col-3">
+            <img src="{{ product.product_image.url }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ product.name }}</li>
+                    <li class="list-group-item">Описание: {{ product.description }}</li>
+                    <li class="list-group-item">Цена {{product.price}}$ за шт</li>
+                    <li class="list-group-item">Наличие: {{ product.quantity }} шт</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <a href="{% url 'app:create_order' %}" class="btn btn-primary " style="margin-left: 45px; margin-right: 45px; margin-bottom: 10px;">Заказать</a>
+</div>
 {%endblock%}

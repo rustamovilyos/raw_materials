@@ -1,40 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Создание заказа</title>
-</head>
-<body>
-<h1>Создание заказа</h1>
-{% if message %}
-    <div class="alert alert-danger">{{ message }}</div>
-{% endif %}
-<form method="post" action="{%url 'app:create_order' %} ">
+{%extends './index.html'%}
+{%block title%}
+Создание заказа
+{%endblock%}
 
-    {% csrf_token %}
-    <label for="product">Продукт:</label>
-    <select name="product" id="product">
-        {% for product in products %}
-        <option value="{{ product.id }}">{{ product.name }} - {{ product.price }} руб.</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <label for="quantity">Количество:</label>
-    <input type="number" name="quantity" id="quantity" min="1" value="1">
-    <br><br>
-    <label for="name">Имя:</label>
-    <input type="text" name="name" id="name">
-    <br><br>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
-    <br><br>
-    <label for="phone">Phone Number:</label>
-    <input type="text" id="phone_number" name="phone" required>
-    <br><br>
-    <label for="address">Address:</label>
-    <textarea id="address" name="address" rows="4" required></textarea>
-    <button type="submit">Отправить заказ</button>
+{%block main%}
+<div class="container">
+    <h1>Создание заказа</h1>
+    {% if message %}
+    <div class="alert alert-danger d-flex align-items-center">
+        {{ message }}
+    </div>
+
+    {% endif %}
+    <form method="post" action="{%url 'app:create_order' %} ">
+
+        {% csrf_token %}
+        <label for="product">Продукт:</label>
+        <select class="form-select" name="product" id="product">
+            {% for product in products %}
+            <option value="{{ product.id }}">{{ product.name }} - {{ product.price }} $.</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="quantity">Количество:</label>
+        <input class="form-control" type="number" name="quantity" id="quantity" min="1" value="1">
+        <br>
+        <label for="name">Имя:</label>
+        <input class="form-control" type="text" name="name" id="name">
+        <br>
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" name="email" id="email">
+        <br>
+        <label for="phone">Phone Number:</label>
+        <input class="form-control" type="text" id="phone_number" name="phone" required>
+        <br>
+        <label for="address">Address:</label>
+        <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+        <br>
+        <button class="btn btn-primary" type="submit">Отправить заказ</button>
 
 
-</form>
-</body>
-</html>
+    </form>
+</div>
+{%endblock%}
