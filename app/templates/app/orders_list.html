@@ -4,11 +4,12 @@
 <div class="container">
     <div class="row">
         {% for order in orders_list %}
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-1">
+
+            <div class="card h-100" style="width: 15rem; margin-top: 5%;">
             {% for item in order.order_products.all %}
-            <div class="card h-100" style="width: 18rem; margin-top: 5%;">
-                <img src="{{ item.product.product_image.url }}" class="card-img-top" alt="...">
                 <div class="card-body">
+                    <img src="{{ item.product.product_image.url }}" class="card-img-top" alt="...">
                     <h5 class="card-title">{{ item.product.name }}</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID заказа: {{ order.id }}</li>
